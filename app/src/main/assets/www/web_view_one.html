@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Html Page</title>
+</head>
+<body>
+<div id="main" style="width: 350px;height:400px;"></div>
+
+<script src="file:///android_asset/www/js/jquery-3.0.0.js"></script>
+<script src="file:///android_asset/www/js/bootstrap.js"></script>
+<script src="file:///android_asset/www/js/echarts.js"></script>
+<link rel="stylesheet" type="text/css" href="file:///android_asset/www/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="file:///android_asset/www/css/bootstrap-theme.css">
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            baseOption: {
+                title : {
+                    text: '消费收支对比',
+                    subtext: '测试数据',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['收入','支出']
+                },
+                series : [
+                    {
+                        name: '消费收支',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ],
+                color:['#556b2f','#8b0000']
+            },
+            media:[
+                {
+                    option:{
+                        legend:{
+                            left: "left",
+                            orient: 'vertical'
+                        },
+                        series:{
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                        }
+                    }
+                },
+                {
+                    query: {
+                        minAspectRatio: 1
+                    },
+                    option:{
+                        legend:{
+                            left: "left",
+                            orient: 'vertical'
+                        },
+                        series:{
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                        }
+                    }
+                },
+                {
+                    query: {
+                        maxWidth: 800
+                    },
+                    option:{
+                        legend:{
+                            left: "left",
+                            orient: 'vertical'
+                        },
+                        series:{
+                            radius : '50%',
+                            center: ['50%', '55%'],
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        myChart.setOption({
+            series: [{
+                data: JSON.parse(recordService.getAmount())
+            }]
+        });
+
+</script>
+</body>
+</html>

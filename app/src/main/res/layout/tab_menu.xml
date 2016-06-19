@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/dash_rl"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/tab_menu_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/ic_dash"
+            style="@style/tab_menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ic_dash" />
+
+        <TextView
+            android:id="@+id/dash_txt"
+            style="@style/tab_menu_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_dash"
+            android:text="@string/dash" />
+
+        <!--<TextView-->
+        <!--style="@style/tab_menu_msg"-->
+        <!--android:layout_alignTop="@id/ic_chat"-->
+        <!--android:layout_toRightOf="@id/ic_chat"-->
+        <!--android:text="99+" />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/records_rl"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/tab_menu_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/ic_records"
+            style="@style/tab_menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ic_records" />
+
+        <TextView
+            android:id="@+id/records_txt"
+            style="@style/tab_menu_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_records"
+            android:text="@string/records" />
+
+        <!--<TextView-->
+        <!--style="@style/tab_menu_msg"-->
+        <!--android:layout_alignTop="@id/ic_friends"-->
+        <!--android:layout_toRightOf="@id/ic_friends"-->
+        <!--android:text="99+" />-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_rl"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/tab_menu_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/ic_profile"
+            style="@style/tab_menu_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ic_profile" />
+
+        <TextView
+            android:id="@+id/profile_txt"
+            style="@style/tab_menu_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_profile"
+            android:text="@string/profile" />
+    </RelativeLayout>
+</LinearLayout>

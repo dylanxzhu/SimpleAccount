@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">小账本</string>
+
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <string name="dash">首页</string>
+    <string name="records">账目</string>
+    <string name="profile">个人</string>
+
+    <string name="ic_dash">&#xe620;</string>
+    <string name="ic_records">&#xe635;</string>
+    <string name="ic_profile">&#xe614;</string>
+    <string name="ic_qr_code">&#xe650;</string>
+
+    <string name="ic_setting">&#xe611;</string>
+    <string name="ic_about">&#xe646;</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+
+    <string name="ic_back">&#xe60f;</string>
+
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="logout">登出</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+
+    <string name="ic_search">&#xe60b;</string>
+    <string name="ic_add">&#xe61d;</string>
+    <string name="ic_type_out">&#xe651;</string>
+    <string name="ic_type_in">&#xe652;</string>
+    <string name="search">搜索</string>
+
+    <string name="record_name">名称</string>
+    <string name="record_amount">金额</string>
+    <string name="record_date">日期</string>
+    <string name="record_type">类型</string>
+    <string name="record_category">分类</string>
+    <string name="record_detail">详细</string>
+
+    <string name="type_in">收入</string>
+    <string name="type_out">支出</string>
+    <string name="record_add">添加</string>
+
+    <string-array name="category_in">
+        <item>衣服</item>
+        <item>餐食</item>
+        <item>交通</item>
+        <item>购物</item>
+        <item>娱乐</item>
+        <item>红包支出</item>
+    </string-array>
+
+    <string-array name="category_out">
+        <item>零花钱</item>
+        <item>压岁钱</item>
+        <item>红包支出</item>
+    </string-array>
+
+    <item name="TYPE_IN" type="id"></item>
+    <item name="TYPE_OUT" type="id"></item>
+
+    <string name="ic_cash">&#xe654;</string>
+</resources>
