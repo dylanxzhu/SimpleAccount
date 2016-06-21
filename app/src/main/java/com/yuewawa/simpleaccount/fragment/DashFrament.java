@@ -1,8 +1,11 @@
 package com.yuewawa.simpleaccount.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.text.Layout;
 import android.view.LayoutInflater;
@@ -39,6 +42,8 @@ public class DashFrament extends BaseFragment {
     private LinearLayout stripLayout;
     private MyPageChangeListener pageChangeListener;
     private RecordService recordService;
+    private ProgressDialog progressDialog;
+    private Handler mHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +55,14 @@ public class DashFrament extends BaseFragment {
         pageChangeListener = new MyPageChangeListener();
         recordService = new RecordService(context);
 
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("提示");
+        progressDialog.setMessage("页面加载中...");
+        progressDialog.setIndeterminate(false);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         viewOne = pagerInflater.inflate(R.layout.web_view_one, null, false);
         webViewOne = (WebView) viewOne.findViewById(R.id.web_view_1);
         WebSettings settings = webViewOne.getSettings();
@@ -57,9 +70,24 @@ public class DashFrament extends BaseFragment {
         settings.setUseWideViewPort(true);//设定支持viewport
         settings.setLoadWithOverviewMode(true);   //自适应屏幕
         settings.setDefaultTextEncodingName("UTF-8");
+
         webViewOne.loadUrl("file:///android_asset/www/web_view_one.html");
         webViewOne.addJavascriptInterface(recordService, "recordService");
-        //webViewOne.loadUrl("javascript:alert(recordService.getAmount())");
+
+        mHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case 0x001:
+                        progressDialog.dismiss();
+                        break;
+                }
+            }
+        };
+        Message msg = new Message();
+        msg.what = 0x001;
+        mHandler.sendMessageDelayed(msg, 3000);
+
         viewTwo = pagerInflater.inflate(R.layout.web_view_two, null, false);
         viewThree = pagerInflater.inflate(R.layout.web_view_three, null, false);
 
