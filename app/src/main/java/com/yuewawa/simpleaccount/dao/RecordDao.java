@@ -3,6 +3,7 @@ package com.yuewawa.simpleaccount.dao;
 import android.content.Context;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.GenericRawResults;
 import com.yuewawa.simpleaccount.db.DatabaseHelper;
 import com.yuewawa.simpleaccount.entity.Record;
 
@@ -36,5 +37,15 @@ public class RecordDao {
 
     public List<Record> getAllById(int id) throws SQLException {
         return dao.queryBuilder().where().eq("user_id", id).query();
+    }
+
+    public GenericRawResults<String[]> getAmount(int id, String type, int month) throws SQLException {
+        return dao.queryRaw("SELECT SUM(amount) FROM t_record WHERE user_id="+id+" and type='"+type+"'" +
+                " and rMonth>="+(month-2)+" and rMonth<="+month+
+                " GROUP BY rMonth");
+    }
+
+    public List<Record> getRMonth(int id, int month) throws SQLException {
+        return dao.queryBuilder().selectColumns("rMonth").groupBy("rMonth").where().eq("user_id", id).and().ge("rMonth", month-2).and().le("rMonth", month).query();
     }
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Html Page</title>
+</head>
+<body>
+<div id="main" style="width: 350px;height:400px;"></div>
+
+<script src="file:///android_asset/www/js/jquery-3.0.0.js"></script>
+<script src="file:///android_asset/www/js/bootstrap.js"></script>
+<script src="file:///android_asset/www/js/echarts.js"></script>
+<link rel="stylesheet" type="text/css" href="file:///android_asset/www/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="file:///android_asset/www/css/bootstrap-theme.css">
+
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+                title : {
+                    text: '消费收支月对比',
+                    subtext: '测试数据',
+                },
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['收入','支出'],
+                    right: 'right'
+                },
+                grid: {
+                    left: '1%',
+                    right: '5%',
+                    bottom: '1%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+                },
+                yAxis: {
+                    type: 'category',
+                    data: []
+                },
+                series : [
+                    {
+                        name: '收入',
+                        type: 'bar',
+                        data:[]
+                    },
+                    {
+                        name: '支出',
+                        type: 'bar',
+                        data:[]
+                    }
+                ],
+                color:['#556b2f','#8b0000']
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        myChart.setOption({
+            yAxis: {
+                data: JSON.parse(recordService.getRMonth())
+            },
+            series: [
+                {
+                    data: JSON.parse(recordService.getAmountTotalByType("收入"))
+                },
+                {
+                    data: JSON.parse(recordService.getAmountTotalByType('支出'))
+                }
+            ]
+        });
+
+</script>
+</body>
+</html>

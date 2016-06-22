@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView android:id="@+id/web_view_2"
+    <TextView android:id="@+id/web_view_3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="功能开发中..."

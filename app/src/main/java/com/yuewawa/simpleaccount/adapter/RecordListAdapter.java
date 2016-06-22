@@ -80,7 +80,20 @@ public class RecordListAdapter extends BaseAdapter{
         }
         holder.nameTxt.setText(record.getName());
         holder.amountTxt.setText("￥"+String.valueOf(record.getAmount()));
-        holder.dateTxt.setText(record.getDate());
+        StringBuffer date = new StringBuffer();
+        if (record.getRMonth()<10){
+            date.append(record.getRYear()+"-0"+record.getRMonth());
+        }
+        else {
+            date.append(record.getRYear()+"-"+record.getRMonth());
+        }
+        if (record.getRDay()<10){
+            date.append("-0"+record.getRDay());
+        }
+        else {
+            date.append("-"+record.getRDay());
+        }
+        holder.dateTxt.setText(date.toString());
         return convertView;
     }
 

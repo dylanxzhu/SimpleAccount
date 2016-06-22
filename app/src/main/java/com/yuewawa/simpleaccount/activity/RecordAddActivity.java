@@ -48,7 +48,7 @@ public class RecordAddActivity extends BaseActivity implements RadioGroup.OnChec
     private double amount;
     private BaseAdapter categoryListAdapter;
     private List<RecordCategory> categories;
-    private String rYear, rMonth, rDay;
+    private int rYear, rMonth, rDay;
     private Calendar calendar;
     private RecordDao recordDao;
     private SharedPreferences pref;
@@ -150,7 +150,9 @@ public class RecordAddActivity extends BaseActivity implements RadioGroup.OnChec
         user.setId(pref.getInt("id", 1));
         record.setName(name);
         record.setAmount(amount);
-        record.setDate(date);
+        record.setRYear(rYear);
+        record.setRMonth(rMonth);
+        record.setRDay(rDay);
         record.setDetail(detail);
         record.setType(type);
         record.setCategory(category);
@@ -184,21 +186,23 @@ public class RecordAddActivity extends BaseActivity implements RadioGroup.OnChec
                 new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        rYear = String.valueOf(year);
+                        rYear = year;
+                        rMonth = monthOfYear+1;
+                        rDay = dayOfMonth;
+                        StringBuffer date = new StringBuffer();
                         if ((monthOfYear+1)<10){
-                            rMonth = "0"+String.valueOf(monthOfYear+1);
+                            date.append(rYear+"-0"+rMonth);
                         }
                         else {
-                            rMonth = String.valueOf(monthOfYear+1);
+                            date.append(rYear+"-"+rMonth);
                         }
                         if (dayOfMonth<10){
-                            rDay = "0"+String.valueOf(dayOfMonth);
+                            date.append("-0"+rDay);
                         }
                         else {
-                            rDay = String.valueOf(dayOfMonth);
+                            date.append("-"+rDay);
                         }
-                        rcdDateEdt.setText(rYear + "-" + rMonth + "-" + rDay);
-                        date = rYear + "-" + rMonth + "-" + rDay;
+                        rcdDateEdt.setText(date.toString());
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
                 break;

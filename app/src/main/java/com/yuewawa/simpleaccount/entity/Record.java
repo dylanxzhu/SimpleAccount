@@ -17,7 +17,11 @@ public class Record {
     @DatabaseField(canBeNull = true)
     private double amount;
     @DatabaseField(canBeNull = true)
-    private String date;
+    private int rYear;
+    @DatabaseField(canBeNull = true)
+    private int rMonth;
+    @DatabaseField(canBeNull = true)
+    private int rDay;
     @DatabaseField(canBeNull = true)
     private String type;
     @DatabaseField(canBeNull = true)
@@ -55,12 +59,28 @@ public class Record {
         this.amount = amount;
     }
 
-    public String getDate() {
-        return date;
+    public int getRYear() {
+        return rYear;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setRYear(int rYear) {
+        this.rYear = rYear;
+    }
+
+    public int getRMonth() {
+        return rMonth;
+    }
+
+    public void setRMonth(int rMonth) {
+        this.rMonth = rMonth;
+    }
+
+    public int getRDay() {
+        return rDay;
+    }
+
+    public void setRDay(int rDay) {
+        this.rDay = rDay;
     }
 
     public String getType() {
