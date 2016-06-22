@@ -36,7 +36,7 @@ public class DashFrament extends BaseFragment {
     private List<View> list;
     private LayoutInflater pagerInflater;
     private Context context;
-    private WebView webViewOne;
+    private WebView webViewOne, webViewTwo;
     private View viewOne, viewTwo, viewThree;
     private View[] stripView;
     private LinearLayout stripLayout;
@@ -44,6 +44,7 @@ public class DashFrament extends BaseFragment {
     private RecordService recordService;
     private ProgressDialog progressDialog;
     private Handler mHandler;
+    private WebSettings settings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class DashFrament extends BaseFragment {
 
         viewOne = pagerInflater.inflate(R.layout.web_view_one, null, false);
         webViewOne = (WebView) viewOne.findViewById(R.id.web_view_1);
-        WebSettings settings = webViewOne.getSettings();
+        settings = webViewOne.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setUseWideViewPort(true);//设定支持viewport
         settings.setLoadWithOverviewMode(true);   //自适应屏幕
@@ -89,6 +90,16 @@ public class DashFrament extends BaseFragment {
         mHandler.sendMessageDelayed(msg, 3000);
 
         viewTwo = pagerInflater.inflate(R.layout.web_view_two, null, false);
+        webViewTwo = (WebView) viewTwo.findViewById(R.id.web_view_2);
+        settings = webViewTwo.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);//设定支持viewport
+        settings.setLoadWithOverviewMode(true);   //自适应屏幕
+        settings.setDefaultTextEncodingName("UTF-8");
+        webViewTwo.loadUrl("file:///android_asset/www/web_view_two.html");
+        webViewTwo.addJavascriptInterface(recordService, "recordService");
+
         viewThree = pagerInflater.inflate(R.layout.web_view_three, null, false);
 
         list.add(viewOne);

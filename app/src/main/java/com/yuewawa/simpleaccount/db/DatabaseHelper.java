@@ -20,7 +20,7 @@ import java.util.Map;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
 
     private static final String DB_NAME = "simpleaccount.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private Map<String, Dao> daos = new HashMap<String, Dao>();
 
     public DatabaseHelper(Context context) {
@@ -42,6 +42,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
         try {
             TableUtils.dropTable(connectionSource, User.class, true);
             TableUtils.dropTable(connectionSource, Record.class, true);
+            onCreate(database, connectionSource);
         } catch (SQLException e) {
             e.printStackTrace();
         }
