@@ -1,6 +1,6 @@
 #SimpleAccount
 
-**App Release**
+**App Beta**
 
 https://github.com/yuewawa/SimpleAccount/releases
 
